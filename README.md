@@ -22,6 +22,6 @@ github: https://github.com/OpenZeppelin/openzeppelin-contracts
 ### Presets 模块
 ### Proxy 模块
 ### Token 模块
-*ERC1155 - 基本标准的多令牌
-*tes
+* ERC1155 - 基本标准的多令牌
+* tes
 ### Utils 模块
