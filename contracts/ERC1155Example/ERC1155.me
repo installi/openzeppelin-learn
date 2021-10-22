@@ -1,0 +1,70 @@
+## ERC1155
+
+## 继承
+Context, ERC165, IERC1155, IERC1155MetadataURI
+
+tk = await ERC1155Example.deployed()
+
+## PUBLIC FUNCTIONS
+转帐 - 单币(其中data参数随机传一个bytes值)
+tk.safeTransferFrom("0x85278E1B28032285cc17011Aa5f3999ecc2c978d","0xFe4301E291750a71597aE0085e60618DBe85f392","2","1","0x96de9dfbeb7cb99a208ade7e765a3e89a9ce57917dc6249a2845e0fd2a782cee")
+转帐 - 多币(其中data参数随机传一个bytes值)
+tk.safeBatchTransferFrom("0x85278E1B28032285cc17011Aa5f3999ecc2c978d","0xFe4301E291750a71597aE0085e60618DBe85f392",[0,1],["1000000000000000000", "1000000000000000000"],"0x96de9dfbeb7cb99a208ade7e765a3e89a9ce57917dc6249a2845e0fd2a782cee")
+
+转帐授权 - 授权所有币 (如果授权为True，则被授权方永久拥有授权)
+tk.setApprovalForAll("0xca883B683DB7184b6aA01CD025E2c95a5f47E7cf",true)
+tk.setApprovalForAll("0xca883B683DB7184b6aA01CD025E2c95a5f47E7cf",false)
+
+## VIEW FUNCTIONS
+查询余额 - 根据币ID
+tk.balanceOf("0xFe4301E291750a71597aE0085e60618DBe85f392","2")
+查询余额 - 多币
+tk.balanceOfBatch(["0x85278E1B28032285cc17011Aa5f3999ecc2c978d", "0x85278E1B28032285cc17011Aa5f3999ecc2c978d"],[0, 2])
+
+
+## ERC1155Burnable
+
+## 继承
+ERC1155
+
+## PUBLIC FUNCTIONS
+销毁 - 单币
+tk.burn("0x85278E1B28032285cc17011Aa5f3999ecc2c978d", "2", "1")
+
+销毁 - 多币
+tk.burnBatch("0x85278E1B28032285cc17011Aa5f3999ecc2c978d",[0,1],["1000000000000000000", "1000000000000000000"])
+
+## ERC1155Pausable
+
+pe = await PausableExample.deployed()
+
+## 继承
+ERC1155, Pausable
+
+pe.safeTransferFrom("0x85278E1B28032285cc17011Aa5f3999ecc2c978d","0x67fcaaeE963D67bB2227D592B94B750CE8357E1C","0","10000000000","0x96de9dfbeb7cb99a208ade7e765a3e89a9ce57917dc6249a2845e0fd2a782cee")
+pe.toggle()
+
+## ERC1155Holder
+ERC1155(A合约) -> 任意B合约(继承 ERC1155Holder)
+
+he = await HolderExample.deployed()
+
+## 继承
+ERC1155Receiver
+
+转帐回调函数 - 单币(应需要加权限)
+onERC1155Received(address operator, address from, uint256 id, uint256 amount, bytes data)
+
+转帐回调函数 - 多币(应需要加权限)
+onERC1155BatchReceived(address operator, address from, uint256[] ids, uint256[] amounts, bytes data)
+
+## ERC1155 Interfaces **
+
+## IERC1155
+
+event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);
+event TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values);
+event ApprovalForAll(address indexed account, address indexed operator, bool approved);
+event URI(string value, uint256 indexed id);
+
+## 接口 - ERC1155合约中全部实现
