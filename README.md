@@ -9,9 +9,7 @@ github: https://github.com/OpenZeppelin/openzeppelin-contracts
 ## 总共分为11大模块
 ### 安装0.7.0的openzepplin-contract以及truffle相关库
 
-    // install openzeppelin
     npm i @openzeppelin/contracts@3.4.1-solc-0.7
-    // install truffle-provider
     npm i hdwallet-provider
 
 ### Access 模块
@@ -24,5 +22,6 @@ github: https://github.com/OpenZeppelin/openzeppelin-contracts
 ### Presets 模块
 ### Proxy 模块
 ### Token 模块
-#### 
+1. ERC1155 - 基本标准的多令牌
+2. tes
 ### Utils 模块
